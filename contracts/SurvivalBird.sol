@@ -2,11 +2,11 @@
 pragma solidity ^0.8.0;
 
 contract SurvivalBird {
-    uint256 public totalPrizePool;
-    uint256 public lastBlockRewardsPaid;
-    uint256 public blocksBeforeWinnerPaid;
-    address public currentHighestScoringPlayer;
-    uint256 public currentHighestScore;
+    uint256 private totalPrizePool;
+    uint256 private lastBlockRewardsPaid;
+    uint256 private blocksBeforeWinnerPaid;
+    address private currentHighestScoringPlayer;
+    uint256 private currentHighestScore;
 
     struct Game {
         bool isGameFinished;
@@ -51,6 +51,14 @@ contract SurvivalBird {
     function canWinningsBeClaimed() public view returns (bool) {
         return (   totalPrizePool > 0 
                 && block.number >= lastBlockRewardsPaid + blocksBeforeWinnerPaid);
+    }
+
+    function getCurrrentPrizePool() public view returns (uint256) {
+        return totalPrizePool;
+    }
+
+    function getCurrentWinner() public view returns (address) {
+        return currentHighestScoringPlayer;
     }
 
     function claimWinnings() external {
