@@ -57,6 +57,10 @@ contract SurvivalBird {
         return totalPrizePool;
     }
 
+    function getCurrrentHighScore() public view returns (uint256) {
+        return currentHighestScore;
+    }
+
     function getCurrentWinner() public view returns (address) {
         return currentHighestScoringPlayer;
     }
