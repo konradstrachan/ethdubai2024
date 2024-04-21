@@ -1,21 +1,28 @@
-# ethdubai2024
+# Survival Bird
+
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/1655afa9-b4c2-4cbc-b072-54539355fc48)
+
+A short fun project build at ETHDubai 2024 to explore different L2 chains and their ability to support web3 gaming integrations.
 
 ## About
 
-In April 2024 Dubai experienced the craziest weather it has seen in 75+ years. The city experienced intense winds and rain. If you weren't lucky enough to be in Dubai for Token2049 and ETHDubai then experience the next best thing with the ETH Dubai survival Simulator!
+⛈️ In April 2024 Dubai experienced the craziest weather it has seen in 75+ years. The city experienced a day of intense winds and rain that led to intense disruption. For those not 'lucky' enough to be in Dubai for Token2049 and ETHDubai during this time, they can experience the next best thing with the ETH Dubai survival Simulator called Survival Bird!
 
-A take on Flappy Bird - Survival Simulator puts you in the shoes of a plucky Emirates plane navigating between the skyscrapers of Dubai and the storms battering the city.
+🐦 To experiment with the economics and practicalities of different L1 and L2 tech being showcased in Dubai, we build a a Flappy Bird clone that puts you in the seat of a plucky Emirates plane navigating between the skyscrapers of Dubai and the storms battering the city.
 
 Experience winds, rain and compete to get the high score and a commemerative NFT.
 
-The game is supported on Sepolia / XDC and Morph.
+The game is supported on Sepolia / XDC / Base and Morph.
 
-Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get the entire prize pool periodically.
+🪙 Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get the entire prize pool periodically. Each 100 blocks all the entry fees will be redistributed to the highest scoring player.
 
 ## How it works
 
 ![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/95fdea07-1139-479a-a772-ba77c20128d3)
 
+The game front end is build in simple React and CSS, it queries via RPCs whether a player has paid to play and keeps the game state in sync with the chain by background txs. Aside from the initial deposit of funds to play, the player doesn't have to sign any other transactions. At the end of the game, the final game state is recorded directly in the game state contract and the player is minted an NFT with their score.
+
+After a short time (set to 100 blocks as an example), the winning player can withdraw the pool of funds.
 
 ## Deployed contracts
 
