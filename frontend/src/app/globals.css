@@ -13,3 +13,11 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+main {
+  background-image: url("/assets/rain-low.gif");
+
+  background-position: bottom;
+  background-repeat: repeat;
+  background-size: cover;
+}

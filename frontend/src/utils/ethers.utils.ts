@@ -79,7 +79,9 @@ export const endGame = async (
 
   let tx = await contract.endGame(playerAddress, gameHash, score);
 
-  await tx.wait();
+  const recepit = await tx.wait();
+
+  console.log("--recepit", recepit);
 };
 
 export const claimWinnings = async (

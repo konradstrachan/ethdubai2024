@@ -26,9 +26,7 @@ export default function HomeComponent({
       <main className="h-screen w-screen flex flex-col items-center justify-center gap-12">
         <LogoComponent />
         <div className="space-y-4 flex flex-col items-stretch">
-          <p>
-            High Score - {ethers.formatEther(globalGameState.highScore)} ETH
-          </p>
+          <p>High Score - {globalGameState.highScore}</p>
           <p>
             Prize Pool - {ethers.formatEther(globalGameState.prizePool)} ETH
           </p>

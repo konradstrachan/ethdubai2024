@@ -21,7 +21,7 @@ export default function Building({
       <div
         style={{
           height: `${Math.max(100 - height - GAP, 0)}%`,
-          backgroundImage: 'url("/assets/building.png")',
+          backgroundImage: 'url("/assets/cloud.png")',
           backgroundRepeat: "repeat",
           backgroundSize: "contain",
           backgroundPosition: "bottom",

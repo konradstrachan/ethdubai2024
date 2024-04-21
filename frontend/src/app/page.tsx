@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { BrowserProvider, ethers } from "ethers";
-import { ClimbingBoxLoader } from "react-spinners";
 import {
   claimWinnings,
   endGame,
@@ -104,19 +103,23 @@ export default function Home() {
     [chainId, address, isGameStarted]
   );
 
-  if (loading) return <LoadingComponent />;
+  const handleResetGame = useCallback(() => {
+    window.location.reload();
+  }, []);
 
-  if (!isConnected || !chainId || !address) return <WalletConnectPage />;
+  // if (loading) return <LoadingComponent />;
 
-  if (!isGameStarted)
-    return (
-      <HomeComponent
-        address={address}
-        globalGameState={globalGameState}
-        handleClaimWinnings={handleClaimWinnings}
-        handleStartGame={handleStartGame}
-      />
-    );
+  // if (!isConnected || !chainId || !address) return <WalletConnectPage />;
+
+  // if (!isGameStarted)
+  //   return (
+  //     <HomeComponent
+  //       address={address}
+  //       globalGameState={globalGameState}
+  //       handleClaimWinnings={handleClaimWinnings}
+  //       handleStartGame={handleStartGame}
+  //     />
+  //   );
 
   if (!isGameEnded) return <GameWindow handleEndGame={handleEndGame} />;
 

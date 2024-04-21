@@ -20,7 +20,7 @@ const initialGameState: GameState = {
   xVelocity: 0.5,
   yVelocity: 0.5,
   time: 0,
-  buildings: [],
+  buildings: [{ height: Math.floor(Math.random() * 90), xPos: 100 }],
 };
 
 const IMPLUSE = 1;
@@ -37,7 +37,7 @@ export default function GameWindow({ handleEndGame }: Props) {
   const [clicked, setClicked] = useState(false);
   const [delayed, setDelayed] = useState(true);
 
-  // const [wind, setWind] = use
+  const [wind, setWind] = useState(0.5);
 
   const checkCollisions = useCallback((oldState: GameState) => {
     for (const building of oldState.buildings) {
@@ -57,15 +57,11 @@ export default function GameWindow({ handleEndGame }: Props) {
     (oldState: GameState) => {
       return {
         yPos: Math.min(Math.max(oldState.yPos + oldState.yVelocity, 0), 90),
-        xVelocity: oldState.xVelocity,
-        yVelocity: clicked
-          ? IMPLUSE
-          : // : oldState.time % PERIOD
-            // ? oldState.yVelocity - Math.random() * 0.03
-            oldState.yVelocity - GRAVITY,
+        xVelocity: wind,
+        yVelocity: clicked ? IMPLUSE : oldState.yVelocity - GRAVITY,
         time: oldState.time + TICK,
         buildings:
-          oldState.time % PERIOD == 0
+          oldState.buildings[oldState.buildings.length - 1].xPos < 60
             ? [
                 ...oldState.buildings.map((building) => {
                   return {
@@ -83,7 +79,7 @@ export default function GameWindow({ handleEndGame }: Props) {
               }),
       };
     },
-    [clicked]
+    [clicked, wind]
   );
 
   const gameLoop = useCallback(() => {
@@ -93,6 +89,28 @@ export default function GameWindow({ handleEndGame }: Props) {
       return movedState;
     });
   }, [moveState]);
+
+  useEffect(() => {
+    const windInterval = setInterval(() => {
+      const MIN = 35 / 100;
+      const MAX = 30 / 100;
+
+      const wind = MIN + Math.random() * MAX;
+      const main = document.querySelector("main");
+
+      if (!main) return;
+
+      if (wind < MIN + MAX / 2) {
+        main.style.backgroundImage = `url("/assets/rain-hard.gif")`;
+      } else {
+        main.style.backgroundImage = `url("/assets/rain-low.gif")`;
+      }
+
+      setWind(wind);
+    }, 1000);
+
+    return () => clearInterval(windInterval);
+  }, []);
 
   useEffect(() => {
     if (checkCollisions(gameState)) handleEndGame(gameState.time);
@@ -129,7 +147,8 @@ export default function GameWindow({ handleEndGame }: Props) {
       </button>
       <div className="absolute top-12 right-12">
         <p className="text-2xl text-white font-bold">
-          Score - {gameState.time}
+          Score - {gameState.time} {"  "}
+          Wind - {wind.toLocaleString()}
         </p>
       </div>
     </main>
