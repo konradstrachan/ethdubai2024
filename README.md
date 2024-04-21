@@ -30,3 +30,10 @@ Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get 
 
 * Game https://explorer-testnet.morphl2.io/address/0xF07b86d5DCd3165A23438bc37a8964128a94c7f0
 * NFT https://explorer-testnet.morphl2.io/address/0x35461b3ba63Aa1764b46778570D8E369Ea3CFF86
+
+## Base Sepolia
+
+* Game https://sepolia.basescan.org/address/0x4dc36fcc192c042fc49fe934d86e8942d79c4e93
+* NFT https://sepolia.basescan.org/address/0xf07b86d5dcd3165a23438bc37a8964128a94c7f0
+
+Example game end state https://sepolia.basescan.org/tx/0xacc829a11b9ba11b9e403e7453a92e450ac43a43f62ecda86eff4c36e5fef835
