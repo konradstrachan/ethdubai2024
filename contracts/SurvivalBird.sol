@@ -1,12 +1,16 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract SurvivalBird {
-    uint256 public totalPrizePool;
-    uint256 public lastBlockRewardsPaid;
-    uint256 public blocksBeforeWinnerPaid;
-    address public currentHighestScoringPlayer;
-    uint256 public currentHighestScore;
+interface ISurvivalBird {
+    function getGamePlayerIfFinished(bytes32 gameHash) external view returns (address);
+}
+
+contract SurvivalBird is ISurvivalBird {
+    uint256 private totalPrizePool;
+    uint256 private lastBlockRewardsPaid;
+    uint256 private blocksBeforeWinnerPaid;
+    address private currentHighestScoringPlayer;
+    uint256 private currentHighestScore;
 
     struct Game {
         bool isGameFinished;
@@ -48,9 +52,26 @@ contract SurvivalBird {
         }
     }
 
+    function getGamePlayerIfFinished(bytes32 gameHash) external view override returns (address) {
+        require(games[gameHash].isGameFinished, "Game not finished or valid");
+        return games[gameHash].playerAddress;
+    }
+
     function canWinningsBeClaimed() public view returns (bool) {
         return (   totalPrizePool > 0 
                 && block.number >= lastBlockRewardsPaid + blocksBeforeWinnerPaid);
+    }
+
+    function getCurrrentPrizePool() public view returns (uint256) {
+        return totalPrizePool;
+    }
+
+    function getCurrrentHighScore() public view returns (uint256) {
+        return currentHighestScore;
+    }
+
+    function getCurrentWinner() public view returns (address) {
+        return currentHighestScoringPlayer;
     }
 
     function claimWinnings() external {
