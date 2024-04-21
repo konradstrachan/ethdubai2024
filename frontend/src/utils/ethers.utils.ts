@@ -13,6 +13,9 @@ const GAME_ABI: string[] = [
 
 const GAME_ADDRESS: { [chainId: string]: string } = {
   "11155111": "0x0c8743d6979ae62146B34094C60fC6AccCC90917",
+  "84532": "0x4DC36FCc192c042fC49Fe934D86E8942D79c4e93",
+  "51": "0xF07b86d5DCd3165A23438bc37a8964128a94c7f0",
+  "2710": "0xF07b86d5DCd3165A23438bc37a8964128a94c7f0",
 };
 
 const RPC_PROVIDER = new ethers.JsonRpcProvider("https://sepolia.drpc.org");

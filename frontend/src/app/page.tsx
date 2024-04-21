@@ -51,6 +51,8 @@ export default function Home() {
       const prizePool = await getCurrrentPrizePool(chainId.toString());
       const winnerAddress = await getCurrentWinner(chainId.toString());
 
+      console.log("--highscore", highScore);
+
       setGlobalGameState({ highScore, prizePool, winnerAddress });
       setLoading(false);
     })();
