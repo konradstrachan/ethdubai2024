@@ -18,11 +18,15 @@ const GAME_ADDRESS: { [chainId: string]: string } = {
   "2710": "0xF07b86d5DCd3165A23438bc37a8964128a94c7f0",
 };
 
-const RPC_PROVIDER = new ethers.JsonRpcProvider("https://sepolia.drpc.org");
+const RPC_PROVIDER: { [chainId: string]: ethers.JsonRpcProvider } = {
+  "11155111": new ethers.JsonRpcProvider("https://sepolia.drpc.org"),
+  "84532": new ethers.JsonRpcProvider("https://sepolia.base.org"),
+  "51": new ethers.JsonRpcProvider("https://apothem.xdcrpc.com"),
+  "2710": new ethers.JsonRpcProvider("https://rpc-testnet.morphl2.io"),
+};
 
 const DEFAULT_SIGNER = ethers.Wallet.fromPhrase(
-  "bar jungle bean try butter donor inch bike farm enemy scatter seat",
-  RPC_PROVIDER
+  "bar jungle bean try butter donor inch bike farm enemy scatter seat"
 );
 
 export const startGame = async (
@@ -44,28 +48,36 @@ export const startGame = async (
   return gameHash;
 };
 
-export const getCurrrentHighScore = async (
-  chainId: string,
-  signer: ethers.Signer = DEFAULT_SIGNER
-) => {
+export const getCurrrentHighScore = async (chainId: string) => {
+  const signer = ethers.Wallet.fromPhrase(
+    "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+    RPC_PROVIDER[chainId]
+  );
+
+  console.log(GAME_ADDRESS[chainId]);
+
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
   return await contract.getCurrrentHighScore();
 };
 
-export const getCurrrentPrizePool = async (
-  chainId: string,
-  signer: ethers.Signer = DEFAULT_SIGNER
-) => {
+export const getCurrrentPrizePool = async (chainId: string) => {
+  const signer = ethers.Wallet.fromPhrase(
+    "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+    RPC_PROVIDER[chainId]
+  );
+
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
   return await contract.getCurrrentPrizePool();
 };
 
-export const getCurrentWinner = async (
-  chainId: string,
-  signer: ethers.Signer = DEFAULT_SIGNER
-) => {
+export const getCurrentWinner = async (chainId: string) => {
+  const signer = ethers.Wallet.fromPhrase(
+    "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+    RPC_PROVIDER[chainId]
+  );
+
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
   return await contract.getCurrentWinner();
@@ -75,9 +87,13 @@ export const endGame = async (
   chainId: string,
   playerAddress: string,
   gameHash: string,
-  score: number,
-  signer: ethers.Signer = DEFAULT_SIGNER
+  score: number
 ) => {
+  const signer = ethers.Wallet.fromPhrase(
+    "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+    RPC_PROVIDER[chainId]
+  );
+
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
   let tx = await contract.endGame(playerAddress, gameHash, score);

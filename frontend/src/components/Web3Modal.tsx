@@ -12,6 +12,27 @@ const WALLETCONNECT_CHAINS = [
     explorerUrl: "https://sepolia.etherscan.io",
     rpcUrl: "https://sepolia.drpc.org",
   },
+  {
+    chainId: 84532,
+    name: "Base Sepolia",
+    currency: "ETH",
+    explorerUrl: "https://sepolia.etherscan.io",
+    rpcUrl: "https://sepolia.base.org",
+  },
+  {
+    chainId: 51,
+    name: "XDC Apothem",
+    currency: "ETH",
+    explorerUrl: "https://sepolia.etherscan.io",
+    rpcUrl: "https://apothem.xdcrpc.com",
+  },
+  {
+    chainId: 2710,
+    name: "Morph",
+    currency: "ETH",
+    explorerUrl: "https://sepolia.etherscan.io",
+    rpcUrl: "https://rpc-testnet.morphl2.io",
+  },
 ];
 
 // 3. Create a metadata object

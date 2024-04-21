@@ -40,6 +40,7 @@ export default function Home() {
   const [isGameStarted, setIsGameStarted] = useState<string | null>(null);
 
   const [isGameEnded, setIsGameEnded] = useState<boolean>(false);
+  const [endScore, setEndScore] = useState(0);
 
   useEffect(() => {
     (async () => {
@@ -50,8 +51,6 @@ export default function Home() {
       const highScore = await getCurrrentHighScore(chainId.toString());
       const prizePool = await getCurrrentPrizePool(chainId.toString());
       const winnerAddress = await getCurrentWinner(chainId.toString());
-
-      console.log("--highscore", highScore);
 
       setGlobalGameState({ highScore, prizePool, winnerAddress });
       setLoading(false);
@@ -99,6 +98,7 @@ export default function Home() {
 
       await endGame(chainId.toString(), address, isGameStarted, score);
 
+      setEndScore(score);
       setIsGameEnded(true);
       setLoading(false);
     },
@@ -129,6 +129,12 @@ export default function Home() {
     <Web3Modal>
       <main className="h-screen w-screen flex items-center justify-center">
         <LogoComponent />
+        <p className="text-6xl bg-gray-800 text-white rounded-md p-4">
+          Score - {endScore}
+        </p>
+        <button className="text-4xl white rounded-md p-4">
+          Click to restart
+        </button>
       </main>
     </Web3Modal>
   );
