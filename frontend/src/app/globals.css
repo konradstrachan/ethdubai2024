@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Tac+One&display=swap");
+
+body {
+  background-image: url("/assets/background.png");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  width: 100vw;
+  height: 100vh;
+}
