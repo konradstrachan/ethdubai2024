@@ -107,19 +107,19 @@ export default function Home() {
     window.location.reload();
   }, []);
 
-  // if (loading) return <LoadingComponent />;
+  if (loading) return <LoadingComponent />;
 
-  // if (!isConnected || !chainId || !address) return <WalletConnectPage />;
+  if (!isConnected || !chainId || !address) return <WalletConnectPage />;
 
-  // if (!isGameStarted)
-  //   return (
-  //     <HomeComponent
-  //       address={address}
-  //       globalGameState={globalGameState}
-  //       handleClaimWinnings={handleClaimWinnings}
-  //       handleStartGame={handleStartGame}
-  //     />
-  //   );
+  if (!isGameStarted)
+    return (
+      <HomeComponent
+        address={address}
+        globalGameState={globalGameState}
+        handleClaimWinnings={handleClaimWinnings}
+        handleStartGame={handleStartGame}
+      />
+    );
 
   if (!isGameEnded) return <GameWindow handleEndGame={handleEndGame} />;
 
