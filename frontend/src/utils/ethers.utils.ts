@@ -12,12 +12,15 @@ const GAME_ABI: string[] = [
 ];
 
 const GAME_ADDRESS: { [chainId: string]: string } = {
-  "11155111": "0xF02B85eD64e880Ae675aa2c4173Df1954cf46862",
+  "11155111": "0x0c8743d6979ae62146B34094C60fC6AccCC90917",
 };
 
 const RPC_PROVIDER = new ethers.JsonRpcProvider("https://sepolia.drpc.org");
 
-const DEFAULT_SIGNER = ethers.Wallet.fromPhrase("", RPC_PROVIDER);
+const DEFAULT_SIGNER = ethers.Wallet.fromPhrase(
+  "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+  RPC_PROVIDER
+);
 
 export const startGame = async (
   chainId: string,
