@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { BrowserProvider, ethers } from "ethers";
 import {
+  canWinningsBeClaimed,
   claimWinnings,
   endGame,
   getCurrentWinner,
@@ -23,6 +24,7 @@ type GlobalGameState = {
   highScore: bigint;
   prizePool: bigint;
   winnerAddress: string;
+  areWinningsClaimable: boolean;
 };
 
 export default function Home() {
@@ -35,6 +37,7 @@ export default function Home() {
     highScore: BigInt(0),
     prizePool: BigInt(0),
     winnerAddress: ethers.ZeroAddress,
+    areWinningsClaimable: false,
   });
 
   const [isGameStarted, setIsGameStarted] = useState<string | null>(null);
@@ -51,8 +54,16 @@ export default function Home() {
       const highScore = await getCurrrentHighScore(chainId.toString());
       const prizePool = await getCurrrentPrizePool(chainId.toString());
       const winnerAddress = await getCurrentWinner(chainId.toString());
+      const areWinningsClaimable = await canWinningsBeClaimed(
+        chainId.toString()
+      );
 
-      setGlobalGameState({ highScore, prizePool, winnerAddress });
+      setGlobalGameState({
+        highScore,
+        prizePool,
+        winnerAddress,
+        areWinningsClaimable,
+      });
       setLoading(false);
     })();
   }, [chainId, isConnected]);

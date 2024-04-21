@@ -35,17 +35,21 @@ export const startGame = async (
 ) => {
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
-  let [gameHash] = await contract.startGame.staticCallResult({
-    value: ethers.parseEther("0.01"),
-  });
+  try {
+    let [gameHash] = await contract.startGame.staticCallResult({
+      value: ethers.parseEther("0.01"),
+    });
 
-  let tx = await contract.startGame({
-    value: ethers.parseEther("0.01"),
-  });
+    let tx = await contract.startGame({
+      value: ethers.parseEther("0.01"),
+    });
 
-  await tx.wait();
+    await tx.wait();
 
-  return gameHash;
+    return gameHash;
+  } catch (err) {
+    console.log("--err", err);
+  }
 };
 
 export const getCurrrentHighScore = async (chainId: string) => {
@@ -83,6 +87,17 @@ export const getCurrentWinner = async (chainId: string) => {
   return await contract.getCurrentWinner();
 };
 
+export const canWinningsBeClaimed = async (chainId: string) => {
+  const signer = ethers.Wallet.fromPhrase(
+    "bar jungle bean try butter donor inch bike farm enemy scatter seat",
+    RPC_PROVIDER[chainId]
+  );
+
+  const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
+
+  return await contract.canWinningsBeClaimed();
+};
+
 export const endGame = async (
   chainId: string,
   playerAddress: string,
@@ -96,11 +111,13 @@ export const endGame = async (
 
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
-  let tx = await contract.endGame(playerAddress, gameHash, score);
+  try {
+    let tx = await contract.endGame(playerAddress, gameHash, score);
 
-  const recepit = await tx.wait();
-
-  console.log("--recepit", recepit);
+    await tx.wait();
+  } catch (err) {
+    console.log("--err", err);
+  }
 };
 
 export const claimWinnings = async (
@@ -109,7 +126,11 @@ export const claimWinnings = async (
 ) => {
   const contract = new ethers.Contract(GAME_ADDRESS[chainId], GAME_ABI, signer);
 
-  let tx = await contract.claimWinnings();
+  try {
+    let tx = await contract.claimWinnings();
 
-  await tx.wait();
+    await tx.wait();
+  } catch (err) {
+    console.log("--err", err);
+  }
 };
