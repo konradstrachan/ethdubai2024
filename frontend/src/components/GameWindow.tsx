@@ -28,6 +28,8 @@ const GRAVITY = 0.02;
 const TICK = 1;
 const PERIOD = 100;
 
+const FPS = 60;
+
 type Props = { handleEndGame: (score: number) => Promise<void> };
 
 export default function GameWindow({ handleEndGame }: Props) {
@@ -97,7 +99,7 @@ export default function GameWindow({ handleEndGame }: Props) {
   }, [handleEndGame, gameState, checkCollisions]);
 
   useEffect(() => {
-    const interval = setInterval(gameLoop, 1000 / 60);
+    const interval = setInterval(gameLoop, 1000 / FPS);
     return () => clearInterval(interval);
   }, [gameLoop]);
 
@@ -119,17 +121,17 @@ export default function GameWindow({ handleEndGame }: Props) {
 
   return (
     <main className="relative">
-      <div className="absolute top-12 right-12">
-        <p className="text-2xl text-white font-bold">
-          Score - {gameState.time}
-        </p>
-      </div>
       {gameState.buildings.map((building, ind) => (
         <Building height={building.height} xPos={building.xPos} key={ind} />
       ))}
       <button className="w-screen h-screen relative" onClick={handleClick}>
         <Plane gameState={gameState} />
       </button>
+      <div className="absolute top-12 right-12">
+        <p className="text-2xl text-white font-bold">
+          Score - {gameState.time}
+        </p>
+      </div>
     </main>
   );
 }

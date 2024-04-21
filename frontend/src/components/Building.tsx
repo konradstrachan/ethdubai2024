@@ -12,9 +12,10 @@ export default function Building({
 }) {
   return (
     <div
-      className={`absolute h-screen flex flex-col w-[${BUILDING_WIDTH}%] items-stretch justify-between`}
+      className={`absolute h-screen flex flex-col items-stretch justify-between`}
       style={{
         left: `${xPos}%`,
+        width: `${BUILDING_WIDTH}%`,
       }}
     >
       <div
