@@ -14,7 +14,8 @@ Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get 
 
 ## How it works
 
-![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/8484f90e-5719-4aad-b885-0dd3f67c74f1)
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/95fdea07-1139-479a-a772-ba77c20128d3)
+
 
 ## Deployed contracts
 
@@ -23,15 +24,22 @@ Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get 
 * NFT https://sepolia.etherscan.io/address/0xe8d73e7c0a6e505e0ab8af1918bcf5deba66d986
 
 ### XDC Apothem 
+
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/b838d1d1-96f1-4f26-964a-b9e64a4c0629)
+
 * Game https://apothem.xinfinscan.com/tx/0x7d2a957f215c6edef779b0b5ff19754df78cec94008278eb7079ee47c5a891a4
 * NFT https://apothem.xinfinscan.com/address/0x66FFacc3CC94E6cA0327EB0FDd760e0bF7bE5dbf
 
 ### Morph
 
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/8de08161-6bc6-49ea-8e37-b54c1aba9f1e)
+
 * Game https://explorer-testnet.morphl2.io/address/0xF07b86d5DCd3165A23438bc37a8964128a94c7f0
 * NFT https://explorer-testnet.morphl2.io/address/0x35461b3ba63Aa1764b46778570D8E369Ea3CFF86
 
 ## Base Sepolia
+
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/f36112bb-387b-4617-9d43-05bd80ecf059)
 
 * Game https://sepolia.basescan.org/address/0x4dc36fcc192c042fc49fe934d86e8942d79c4e93
 * NFT https://sepolia.basescan.org/address/0xf07b86d5dcd3165a23438bc37a8964128a94c7f0
