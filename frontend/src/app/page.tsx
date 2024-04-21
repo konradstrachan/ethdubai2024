@@ -123,14 +123,14 @@ export default function Home() {
 
   return (
     <Web3Modal>
-      <main className="h-screen w-screen flex items-center justify-center">
+      <main className="h-screen w-screen flex flex-col gap-12 items-center justify-center">
         <LogoComponent />
         <p className="text-6xl bg-gray-800 text-white rounded-md p-4">
           Score - {endScore}
         </p>
         <button
           className="text-4xl white rounded-md p-4"
-          onclick={() => window.location.reload()}
+          onClick={() => window.location.reload()}
         >
           Click to restart
         </button>
