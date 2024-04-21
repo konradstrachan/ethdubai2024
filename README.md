@@ -22,6 +22,8 @@ The game is supported on Sepolia / XDC / Base and Morph.
 
 The game front end is build in simple React and CSS, it queries via RPCs whether a player has paid to play and keeps the game state in sync with the chain by background txs. Aside from the initial deposit of funds to play, the player doesn't have to sign any other transactions. At the end of the game, the final game state is recorded directly in the game state contract and the player is minted an NFT with their score.
 
+The background state updates occur via a quick and dirty AA like interaction with the game wallet paying for the txs on the behalf of the user while they focus on avoiding the obsticles within the game.
+
 After a short time (set to 100 blocks as an example), the winning player can withdraw the pool of funds.
 
 ## Deployed contracts
