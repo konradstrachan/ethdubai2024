@@ -105,10 +105,6 @@ export default function Home() {
     [chainId, address, isGameStarted]
   );
 
-  const handleResetGame = useCallback(() => {
-    window.location.reload();
-  }, []);
-
   if (loading) return <LoadingComponent />;
 
   if (!isConnected || !chainId || !address) return <WalletConnectPage />;
@@ -132,7 +128,10 @@ export default function Home() {
         <p className="text-6xl bg-gray-800 text-white rounded-md p-4">
           Score - {endScore}
         </p>
-        <button className="text-4xl white rounded-md p-4">
+        <button
+          className="text-4xl white rounded-md p-4"
+          onclick={() => window.location.reload()}
+        >
           Click to restart
         </button>
       </main>
