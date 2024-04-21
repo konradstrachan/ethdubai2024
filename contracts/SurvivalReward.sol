@@ -7,6 +7,10 @@ interface ISurvivalBird {
     function getGamePlayerIfFinished(bytes32 gameHash) external view returns (address);
 }
 
+interface ISurvivalReward {
+    function mint(bytes32 gameHash, uint256 score) external;
+}
+
 contract SurvivalReward is ERC721 {
     string private _imageData;
     uint256 private _score;
@@ -24,9 +28,9 @@ contract SurvivalReward is ERC721 {
 
     // Function to mint a new NFT with a specific score
     function mint(bytes32 gameHash, uint256 score) external {
-        address to = _gameState.getGamePlayerIfFinished(gameHash);
+        address to = ISurvivalBird(_gameState).getGamePlayerIfFinished(gameHash);
         _safeMint(to, ++_nextId);
-        _tokenScores[tokenId] = score;
+        _tokenScores[_nextId] = score;
     }
 
     function getImageData() external view returns (string memory) {
@@ -34,7 +38,11 @@ contract SurvivalReward is ERC721 {
     }
 
     function getScore(uint256 tokenId) external view returns (uint256) {
-        require(_exists(tokenId), "Token ID does not exist");
+        require(tokenId <= _nextId, "Token ID does not exist");
         return _tokenScores[tokenId];
+    }
+
+    function tokenURI(uint256 tokenId) public view returns (string memory) {
+        return _imageData; 
     }
 }

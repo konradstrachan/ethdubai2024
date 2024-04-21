@@ -5,12 +5,17 @@ interface ISurvivalBird {
     function getGamePlayerIfFinished(bytes32 gameHash) external view returns (address);
 }
 
+interface ISurvivalReward {
+    function mint(bytes32 gameHash, uint256 score) external;
+}
+
 contract SurvivalBird is ISurvivalBird {
     uint256 private totalPrizePool;
     uint256 private lastBlockRewardsPaid;
     uint256 private blocksBeforeWinnerPaid;
     address private currentHighestScoringPlayer;
     uint256 private currentHighestScore;
+    address private rewardNFT;
 
     struct Game {
         bool isGameFinished;
@@ -26,6 +31,7 @@ contract SurvivalBird is ISurvivalBird {
         blocksBeforeWinnerPaid = 100;
         currentHighestScoringPlayer = address(0);
         currentHighestScore = 0;
+        rewardNFT = address(0);
     }
 
     function startGame() external payable returns (bytes32) {
@@ -50,6 +56,15 @@ contract SurvivalBird is ISurvivalBird {
             currentHighestScoringPlayer = playerAddress;
             currentHighestScore = score;
         }
+
+        if (rewardNFT != address(0)) {
+            ISurvivalReward(rewardNFT).mint(gameHash, score);
+        }
+    }
+
+    function setRewardNFT(address nft) public {
+        require(rewardNFT == address(0), "NFT already set");
+        rewardNFT = nft;
     }
 
     function getGamePlayerIfFinished(bytes32 gameHash) external view override returns (address) {
