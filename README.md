@@ -6,7 +6,7 @@ In April 2024 Dubai experienced the craziest weather it has seen in 75+ years. T
 
 A take on Flappy Bird - Survival Simulator puts you in the shoes of a plucky Emirates plane navigating between the skyscrapers of Dubai and the storms battering the city.
 
-Experience winds, rain and compete to get the high score.
+Experience winds, rain and compete to get the high score and a commemerative NFT.
 
 The game is supported on Sepolia / XDC and Morph.
 
@@ -14,8 +14,7 @@ Players should deplosit 0.01 ETH / TXDC and the highest scoring player will get 
 
 ## How it works
 
-
-
+![image](https://github.com/konradstrachan/ethdubai2024/assets/21056525/8484f90e-5719-4aad-b885-0dd3f67c74f1)
 
 ## Deployed contracts
 
